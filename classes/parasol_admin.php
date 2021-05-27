@@ -2,20 +2,52 @@
 
 class Parasol_Admin {
 
-  public $options;
-  public $suboptinos;
+  protected $options;
+  protected $suboptions;
+
+  public $style_handles;
+  public $script_handles;
 
   public function __construct($script_handles,$style_handles) {
+    //
     add_action(
      'admin_menu',
      [$this,'parasol_register_options_pages']
     );
-
+    //
     add_action(
       'admin_init',
       [$this,'parasol_init_settings_api']
     );
+    //
+    add_action('wp_admin_enqueue_scripts',[$this,'add_assets']);
+    //
   }
+
+
+  public static function add_assets() {
+    //
+    foreach ($this->style_handles as $style_handle) {
+      wp_register_style(
+        $style_handle,
+        plugin_dir_url(__FILE__) .
+        '../style/' . $style_handle . '.css'
+      );
+    }
+    //
+    foreach ($this->script_handles as $script_handle) {
+      wp_register_script(
+        $script_handle,
+        plugin_dir_url(__FILE__) .
+        '../lib/' . $script_handle . '.js',
+        array(),
+        null,
+        true
+      );
+    }
+    //
+  }
+
 
   public function parasol_register_options_pages () {
     //
@@ -38,6 +70,7 @@ class Parasol_Admin {
       [$this,'parasol_suboptions_page']//cb function
     );
   }
+
 
   public function parasol_init_settings_api() {
     //
@@ -82,11 +115,26 @@ class Parasol_Admin {
     );
   }
 
-  public function parasol_options_section() {
 
-    $this->options =
-      !empty( get_option('parasol') ) ?
-        get_option('parasol') : [];
+  protected function collect_section_overhead($prop_slug,$db_slug,$path_slug) {
+    //
+    $this->{$prop_slug} =
+      !empty( get_option('parasol' . $db_slug) ) ?
+        get_option('parasol' . $db_slug) : [];
+    //
+    if (!empty($this->style_handles["parasol{$path_slug}_admin_style"])) {
+      wp_admin_enqueue_style("parasol{$path_slug}_admin_style");
+    }
+    //
+    if (!empty($this->script_handles["parasol{$path_slug}_admin_script"])) {
+      wp_admin_enqueue_script("parasol{$path_slug}_admin_script");
+    }
+  }
+
+
+  public function parasol_options_section() {
+    //
+    $this->collect_section_overhead('options','','');
     //
     ?>
     <div class="parasol-signal">
@@ -94,10 +142,11 @@ class Parasol_Admin {
     </div>
     <?php
     //
-
   }
 
+
   public function parasol_api_key_field() {
+    //
     $val = !empty($this->options['api_key']) ? $this->options['api_key'] : '';
     $att = ($val) ? 'value' : 'placeholder';
     $val = ($val) ? $val : 'not set';
@@ -110,10 +159,10 @@ class Parasol_Admin {
     //
   }
 
+
   public function parasol_suboptions_section () {
-    $this->suboptions =
-      !empty( get_option('parasol_suboptions') ) ?
-        get_option('parasol_suboptions') : [];
+    //
+    $this->collect_section_overhead('suboptions','_suboptions','');
     //
     ?>
     <div class="parasol-signal">
@@ -123,7 +172,9 @@ class Parasol_Admin {
     //
   }
 
+
   public function parasol_suboption_1_field() {
+    //
     $val = !empty($this->suboptions[1]) ? $this->suboptions[1] : '';
     $att = ($val) ? 'value' : 'placeholder';
     $val = ($val) ? $val : 'not set';
@@ -136,16 +187,21 @@ class Parasol_Admin {
     //
   }
 
+
   public function parasol_options_page () {
+    //
     $this->parasol_options_form('parasol');
   }
 
+
   public function parasol_suboptions_page () {
+    //
     $this->parasol_options_form('parasol_suboptions');
   }
 
-  protected function parasol_options_form ($prop) {
 
+  protected function parasol_options_form ($prop) {
+    //
     echo "<form method='POST' action='options.php' id='$prop'>";
     //
     settings_fields( $prop );

@@ -16,6 +16,7 @@ class Parasol_Templater {
     add_action('wp_enqueue_scripts',[$this,'add_assets']);
   }
 
+
   public static function add_assets() {
     //
     foreach ($this->style_handles as $style_handle) {
@@ -38,21 +39,36 @@ class Parasol_Templater {
     }
     //
   }
+  
 
-  public static function print_parasol_template() {
+  public static function print_parasol_template($atts = []) {
     //
-    foreach ($this->style_handles as $style_handle) {
-      wp_enqueue_style($style_handle);
+    extract(shortcode_atts(array(
+      'style_slug' => '',
+      'script_slugs' => ''
+     ), $atts));
+    $script_paths = [''];
+    //
+    $style_slug = !empty($atts['style_slug']) ? $atts['style_slug'] : '';
+    $script_slugs = !empty($atts['script_slugs']) ? explode(',',$atts['script_slugs']) : $script_paths;
+    //
+    if ( in_array("parasol{$style_slug}_templater_style", $this->style_handles) ) {
+      wp_enqueue_style("parasol{$style_slug}_templater_style");
     }
-    foreach ($this->script_handles as $script_handle) {
-      wp_enqueue_script($script_handle);
+    //
+    foreach($script_slugs as $script_slug) {
+      if ( in_array("parasol{$script_slug}_templater_script", $this->script_handles) ) {
+        wp_enqueue_script("parasol{$script_slug}_templater_script");
+      }
     }
+
     //
     ?>
     <h1 id="parasol-text-render" class="parasol-demo">This is the Parasol templater HTML text content.</h1>
-    <h2 id="parasol-style-render" class="parasol-demo"></h1>
-    <h2 id="parasol-script-render" class="parasol-demo"></h1>
+    <h2 id="parasol-style-render" class="parasol-demo"></h2>
+    <h2 id="parasol-script-render" class="parasol-demo"></h2>
     <?php
     //
   }
+
 }
