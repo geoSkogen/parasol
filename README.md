@@ -14,17 +14,17 @@
 
 #### This allows us to keep unneeded resources off the page and optimize load time.
 #### Keep in mind the added file slugs must be passed as arguments to the Templater object when instantiated in order for WordPress to register them.
-#### Two generic file slugs are included by default.
+#### Two generic file slugs are included by default: parasol_templater_script & parasol_templater_style.
+#### For the above example, we would update
 
-- `$frontend = new Parasol_Templater(
-    ['parasol_templater_script','parasol_hello_templater_script','parasol_main_templater_script'],
-    ['parasol_templater_style','parasol_special_templater_style']
-  );`
-
+- `$frontend = new Parasol_Templater(`
+  `   ['parasol_templater_script','parasol_hello_templater_script','parasol_main_templater_script'],`
+  `   ['parasol_templater_style','parasol_special_templater_style']`
+  `);`
 
 #### The generic templater stylesheet and script will both be enqueued by default if no text attributes are included in the shortcode.
 
-#### To include the generic script along with the custom script list, insert an extra comma to denote an empty string, e.g.:
+#### To include the generic script or stylesheet long with the custom list, insert an extra comma into the comma-separated attributes to denote an empty string, e.g.:
 
 - script_slugs='hello,main,'  -or-
 - script_slugs=',hello,main'  -or-
