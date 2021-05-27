@@ -1,0 +1,7 @@
+#parasol-style-render::after {
+  content : 'This is a pseudo-selector in the Parasol templater stylesheet printing content.'
+}
+
+.parasol-demo {
+  font-size: 24px;
+}
