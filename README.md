@@ -24,7 +24,7 @@
 
 #### The generic templater stylesheet and script will both be enqueued by default if no text attributes are included in the shortcode.
 
-#### To include the generic script or stylesheet long with the custom list, insert an extra comma into the comma-separated attributes to denote an empty string, e.g.:
+#### To include the generic script or stylesheet along with the custom list, insert an extra comma into the comma-separated attributes to denote an empty string, e.g.:
 
 - script_slugs='hello,main,'  -or-
 - script_slugs=',hello,main'  -or-
