@@ -16,7 +16,7 @@ if (is_admin()) {
      include_once 'classes/parasol_admin.php';
   }
 
-  
+
   $admin= new Parasol_Admin(
     ['parasol_admin_script'],
     ['parasol_admin_style']

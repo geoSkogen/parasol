@@ -39,7 +39,7 @@ class Parasol_Templater {
     }
     //
   }
-  
+
 
   public static function print_parasol_template($atts = []) {
     //
@@ -62,11 +62,11 @@ class Parasol_Templater {
       }
     }
 
-    //
+    // Test Pattern - for demo purposes - replace with your content
     ?>
     <h1 id="parasol-text-render" class="parasol-demo">This is the Parasol templater HTML text content.</h1>
     <h2 id="parasol-style-render" class="parasol-demo"></h2>
-    <h2 id="parasol-script-render" class="parasol-demo"></h2>
+    <h3 id="parasol-script-render" class="parasol-demo"></h3>
     <?php
     //
   }

@@ -118,6 +118,9 @@ class Parasol_Admin {
 
   protected function collect_section_overhead($prop_slug,$db_slug,$path_slug) {
     //
+    $db_slug = ($db_slug) ? '_' . $db_slug : '';
+    $path_slug = ($path_slug) ? '_' . $path_slug : '';
+    //
     $this->{$prop_slug} =
       !empty( get_option('parasol' . $db_slug) ) ?
         get_option('parasol' . $db_slug) : [];
@@ -162,7 +165,7 @@ class Parasol_Admin {
 
   public function parasol_suboptions_section () {
     //
-    $this->collect_section_overhead('suboptions','_suboptions','');
+    $this->collect_section_overhead('suboptions','suboptions','suboptions');
     //
     ?>
     <div class="parasol-signal">

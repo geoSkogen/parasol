@@ -1,3 +1,23 @@
+### admin
+
+#### The 'Sub-Options' page, the 'Sub-Option 1' Settings field, and its callback function are all included for demos on how to extend the admin-menu/options-table bindings.
+
+#### The 'collect section overhead' in each Settings Section callback will map an object property (1st arg) to an options table property (2nd arg), and set dedicated admin stylesheet and script paths (3rd arg).
+
+#### (using the default stylesheet/script path)
+
+- `$this->collect_section_overhead('new_options','new_options','');`
+
+#### (using dedicated stylesheet/script paths)
+
+- `$this->collect_section_overhead('new_options','new_options','new_options');`
+
+#### Following this call, field values are accessible as object properties in the Section's Settings Field callbacks, e.g.:
+
+- `<input id="my_field" value="<?php echo $this->new_options['my_field']; ?>" />`
+
+### frontend  
+
 #### Include the shortcode [parasol_template] on a page to view the test pattern, and get started with your customization.
 
 #### [parasol_template] acepts one stylesheet-path-slug argument, and any number of comma-separated script-path-slug arguments.
