@@ -57,7 +57,7 @@ class Parasol_Admin {
       'manage_options', //capability
       'parasol',  //menu_slug
       [$this,'parasol_options_page'],//cb function
-      'dashicons-tagcloud',
+      'dashicons-flag',
       22
     );
     //
