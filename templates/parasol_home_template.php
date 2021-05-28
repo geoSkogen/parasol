@@ -11,6 +11,9 @@ class Parasol_Home_Template {
     error_log('this is app the shell');
     ob_start();
     ?>
+    <h3>Parasol TestPattern</h3>
+    <div id="parasol-style-render"></div>
+    <div id="parasol-script-render"></div>
     <h2>You have reached the Parasol Home template.  To keep building:</h2>
     <h3>
       <ul>
