@@ -4,10 +4,12 @@ class Parasol_Templater {
 
   public  $script_handles;
   public  $style_handles;
+  protected $router;
 
-  public function __construct($scripts_arr, $styles_arr) {
+  public function __construct($router, $scripts_arr, $styles_arr) {
     $this->script_handles = $scripts_arr;
     $this->style_handles = $styles_arr;
+    $this->router = $router;
     //
     add_shortcode( 'parasol_template',
       [$this,'print_parasol_template']
@@ -51,24 +53,37 @@ class Parasol_Templater {
     //
     $style_slug = !empty($atts['style_slug']) ? $atts['style_slug'] : '';
     $script_slugs = !empty($atts['script_slugs']) ? explode(',',$atts['script_slugs']) : $script_paths;
-    //
-    if ( in_array("parasol{$style_slug}_templater_style", $this->style_handles) ) {
+
+    // main stylesheet is always enqueued -
+    wp_enqueue_style("parasol_templater_style");
+    // stylesheet arg option - no arg, no additional styles
+    if ( $style_slug && in_array("parasol{$style_slug}_templater_style", $this->style_handles) ) {
       wp_enqueue_style("parasol{$style_slug}_templater_style");
     }
-    //
+    // javascript doc args option - no args defaults to generic script, if one's injected
     foreach($script_slugs as $script_slug) {
       if ( in_array("parasol{$script_slug}_templater_script", $this->script_handles) ) {
         wp_enqueue_script("parasol{$script_slug}_templater_script");
       }
     }
-
-    // Test Pattern - for demo purposes - replace with your content
-    ?>
-    <h1 id="parasol-text-render" class="parasol-demo">This is the Parasol templater HTML text content.</h1>
-    <h2 id="parasol-style-render" class="parasol-demo"></h2>
-    <h3 id="parasol-script-render" class="parasol-demo"></h3>
-    <?php
-    //
+    // show the shortcode the path
+    if (strpos(site_url(),'localhost')) {
+      // kludge against LAMP staging site URL
+      $url_arr= explode('/',site_url());
+      $domain = $url_arr[count($url_arr)-1] ?
+        $url_arr[count($url_arr)-1] : $url_arr[count($url_arr)-2];
+      //error_log('staging domain');
+      //error_log($domain);
+      //
+      $path = str_replace('/' . $domain . '/', '', $_SERVER['REQUEST_URI']);
+    } else {
+      //
+      $path = substr(1,$_SERVER['REQUEST_URI']);
+    }
+    //error_log('PATH');
+    //error_log($path);
+    // print the routed app template onto the page
+    echo $this->router->get($path);
   }
 
 }
