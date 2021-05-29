@@ -17,8 +17,8 @@ if (is_admin()) {
   }
 
   $admin= new Parasol_Admin(
-    ['parasol_admin_script'],
-    ['parasol_admin_style']
+    ['main'],
+    ['main']
   );
 
 } else {
@@ -36,8 +36,9 @@ if (is_admin()) {
   // add names of main css and js files
   $frontend = new Parasol_Templater(
     $router,
-    ['parasol_templater_script'],
-    ['parasol_templater_style']
+    ['main'],
+    ['main'],
+    'child-styles'
   );
 
 }
