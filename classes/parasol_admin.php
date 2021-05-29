@@ -9,6 +9,10 @@ class Parasol_Admin {
   public $script_handles;
 
   public function __construct($script_handles,$style_handles) {
+
+    $this->style_handles = $style_handles;
+    $this->script_handles = $script_handles;
+
     //
     add_action(
      'admin_menu',
@@ -31,7 +35,7 @@ class Parasol_Admin {
       wp_register_style(
         $style_handle,
         plugin_dir_url(__FILE__) .
-        '../style/' . $style_handle . '.css'
+        '../style/' . 'parasol_admin_' . $style_handle . '_style.css'
       );
     }
     //
@@ -39,7 +43,7 @@ class Parasol_Admin {
       wp_register_script(
         $script_handle,
         plugin_dir_url(__FILE__) .
-        '../lib/' . $script_handle . '.js',
+        '../lib/' . 'parasol_admin_' . $script_handle . '_script.js',
         array(),
         null,
         true
@@ -119,25 +123,24 @@ class Parasol_Admin {
   protected function collect_section_overhead($prop_slug,$db_slug,$path_slug) {
     //
     $db_slug = ($db_slug) ? '_' . $db_slug : '';
-    $path_slug = ($path_slug) ? '_' . $path_slug : '';
     //
     $this->{$prop_slug} =
       !empty( get_option('parasol' . $db_slug) ) ?
         get_option('parasol' . $db_slug) : [];
     //
-    if (!empty($this->style_handles["parasol{$path_slug}_admin_style"])) {
-      wp_admin_enqueue_style("parasol{$path_slug}_admin_style");
+    if (in_array($path_slug,$this->style_handles)) {
+      wp_enqueue_style($path_slug);
     }
     //
-    if (!empty($this->script_handles["parasol{$path_slug}_admin_script"])) {
-      wp_admin_enqueue_script("parasol{$path_slug}_admin_script");
+    if (in_array($path_slug,$this->script_handles)) {
+      wp_enqueue_script($path_slug);
     }
   }
 
 
   public function parasol_options_section() {
     //
-    $this->collect_section_overhead('options','','');
+    $this->collect_section_overhead('options','','main');
     //
     ?>
     <div class="parasol-signal">
@@ -165,7 +168,7 @@ class Parasol_Admin {
 
   public function parasol_suboptions_section () {
     //
-    $this->collect_section_overhead('suboptions','suboptions','suboptions');
+    $this->collect_section_overhead('suboptions','suboptions','main');
     //
     ?>
     <div class="parasol-signal">

@@ -16,22 +16,28 @@ if (is_admin()) {
      include_once 'classes/parasol_admin.php';
   }
 
-
   $admin= new Parasol_Admin(
-    ['parasol_admin_script'],
-    ['parasol_admin_style']
+    ['main'],
+    ['main']
   );
 
-
 } else {
-
+  // frontend resources
   if ( !class_exists( 'Parasol_Templater' ) ) {
      include_once 'classes/parasol_templater.php';
   }
 
+  if ( !class_exists( 'Parasol_Router' ) ) {
+     include_once 'classes/parasol_router.php';
+  }
+
+  $router = new Parasol_Router('book-of-changes');
+
   $frontend = new Parasol_Templater(
-    ['parasol_templater_script'],
-    ['parasol_templater_style']
+    $router,
+    ['nav_modal','touch_wheel','throw_control'],
+    ['main','throw'],
+    'child-style'
   );
 
 }
