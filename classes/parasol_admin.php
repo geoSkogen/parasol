@@ -149,8 +149,6 @@ class Parasol_Admin {
   public function parasol_options_section() {
     //
     $this->collect_section_overhead('options','','main');
-    //error_log('settings overhead call');
-    //error_log(print_r($this->options,true));
     //
     ?>
     <div class="parasol-signal">
@@ -202,8 +200,7 @@ class Parasol_Admin {
         error_log(print_r($publisher->error,true));
       }
     }
-    //error_log('the latest options fetch--should include both api and publish props');
-    //error_log(print_r($this->options,true));
+
     ?>
     <label for="parasol_publish_checkbox">Publish Now?</label>
     <input type="checkbox" id="publish" class="parasol-checkbox"

@@ -20,5 +20,4 @@ class Parasol_Default_Template {
   }
 
 }
-
 ?>

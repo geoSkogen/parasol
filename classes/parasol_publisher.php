@@ -32,6 +32,7 @@ class Parasol_Publisher {
   }
 
   protected function import_csv_index($relpath) {
+    // 2d array : bool
     $result = array();
     if (($handle = fopen(__DIR__  . $relpath, "r")) !== FALSE) {
       //
@@ -48,7 +49,7 @@ class Parasol_Publisher {
   }
 
   protected function nest_post_data($table) {
-    //
+    // 3d array
     $col_names = ['slug','title','css_dep','js_deps','parent_slug'];
     $nested_post_data = [];
     $tier_index = 0;
@@ -92,6 +93,7 @@ class Parasol_Publisher {
   }
 
   protected function inject_shortcode_atts($tag_base, $style_slug, $script_slugs) {
+    // string
     $result =
       "[{$tag_base}_template style_slug='{$style_slug}' script_slugs='{$script_slugs}']";
       //
@@ -99,7 +101,7 @@ class Parasol_Publisher {
   }
 
   protected function write_nested_posts($rows_arr,$domain,$template_path) {
-    //error_log('nested table rows');
+    // void - database ops
     global $wpdb;
     $table_name = $wpdb->prefix . 'posts';
     //error_log($table_name);
@@ -151,7 +153,7 @@ class Parasol_Publisher {
   }
 
   protected function update_post_titles() {
-     //
+    // void - databse ops
     global $wpdb;
     $table_name = $wpdb->prefix . 'posts';
      //error_log($table_name);
@@ -180,7 +182,7 @@ class Parasol_Publisher {
   }
 
   public function publish($app_domain,$template_file_path) {
-     //
+   // void - init methods
    $this->write_nested_posts(
      $this->nested_post_data,
      $app_domain,

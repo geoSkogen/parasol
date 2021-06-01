@@ -2,6 +2,7 @@
 
 class Parasol_Templater {
 
+  public static $record_handles = ['hex-data','hex-chars'];
   public  $script_handles;
   public  $style_handles;
   protected $router;
@@ -22,7 +23,7 @@ class Parasol_Templater {
 
 
   public static function add_assets() {
-    //
+    // void - register
     foreach ($this->style_handles as $style_handle) {
       wp_register_style(
         $style_handle,
@@ -43,11 +44,26 @@ class Parasol_Templater {
       );
     }
     //
+    self::add_records(self::$record_handles);
+    //
+  }
+
+  public static function add_records($script_handles) {
+    foreach ($script_handles as $script_handle) {
+      wp_register_script(
+        $script_handle,
+        plugin_dir_url(__FILE__) .
+        '../records/' .  $script_handle . '.js',
+        array(),
+        null,
+        true
+      );
+    }
   }
 
 
   public static function print_parasol_template($atts = []) {
-    //
+    // void - echo
     extract(shortcode_atts(array(
       'style_slug' => '',
       'script_slugs' => ''
@@ -55,10 +71,6 @@ class Parasol_Templater {
     //
     $style_slug = !empty($atts['style_slug']) ? $atts['style_slug'] : '';
     $script_slugs = !empty($atts['script_slugs']) ? explode(',',$atts['script_slugs']) : [];
-    //
-    error_log('slugs passed to templater');
-    error_log($style_slug);
-    error_log(print_r($script_slugs,true));
     //
     wp_dequeue_style($this->theme_handle);
     wp_deregister_style($this->theme_handle);
@@ -74,7 +86,15 @@ class Parasol_Templater {
     if ( $style_slug && in_array($style_slug, $this->style_handles) ) {
       wp_enqueue_style($style_slug);
     }
-    // javascript doc args option - no args defaults to generic script, if one's injected
+    // reference docs are required -
+    foreach (self::$record_handles as $record_handle) {
+      wp_enqueue_script($record_handle);
+    }
+    // collapsible nav script is required -
+    wp_enqueue_script('nav_modal');
+    // reference docs controller is required -
+    wp_enqueue_script('hex_control');
+    // javascript doc args option -
     foreach($script_slugs as $script_slug) {
       if ( in_array($script_slug, $this->script_handles) ) {
         wp_enqueue_script($script_slug);
@@ -86,16 +106,12 @@ class Parasol_Templater {
       $url_arr= explode('/',site_url());
       $domain = $url_arr[count($url_arr)-1] ?
         $url_arr[count($url_arr)-1] : $url_arr[count($url_arr)-2];
-      //error_log('staging domain');
-      //error_log($domain);
       //
       $path = str_replace('/' . $domain . '/', '', $_SERVER['REQUEST_URI']);
     } else {
       //
       $path = substr(1,$_SERVER['REQUEST_URI']);
     }
-    //error_log('PATH');
-    //error_log($path);
     // print the routed app template onto the page
     echo $this->router->get($path);
   }
