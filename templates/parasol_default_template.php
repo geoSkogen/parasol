@@ -11,7 +11,7 @@ class Parasol_Default_Template {
     error_log('this is the error shell');
     ob_start();
     ?>
-    <!-- a bell is a cup - until it is struck -->
+    <h3> a bell is a cup - until it is struck</h3>
     <?php
 
     $html = ob_get_clean();

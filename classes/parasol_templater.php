@@ -56,10 +56,6 @@ class Parasol_Templater {
     $style_slug = !empty($atts['style_slug']) ? $atts['style_slug'] : '';
     $script_slugs = !empty($atts['script_slugs']) ? explode(',',$atts['script_slugs']) : [];
     //
-    error_log('slugs passed to templater');
-    error_log($style_slug);
-    error_log(print_r($script_slugs,true));
-    //
     wp_dequeue_style($this->theme_handle);
     wp_deregister_style($this->theme_handle);
     wp_enqueue_style(

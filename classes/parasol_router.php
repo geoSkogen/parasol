@@ -7,7 +7,6 @@ class Parasol_Router {
 
   public function __construct($subdomain) {
     $this->subdomain = $subdomain;
-    $this->err_msg = "<h1>The requested resource object doesn't exist.</h1>";
   }
 
 
@@ -26,8 +25,10 @@ class Parasol_Router {
         break;
 
       default :
-
-        $app_html = $err_msg;
+        if (!class_exists('Parasol_Home_Template')) {
+          include_once __DIR__ . '../../templates/parasol_default_template.php';
+        }
+        $app_html = new Parasol_Default_Template();
     }
 
     return $app_html->app_html();
