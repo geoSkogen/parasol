@@ -65,11 +65,11 @@ class Parasol_Templater {
   public static function print_parasol_template($atts = []) {
     // void - echo
     extract(shortcode_atts(array(
-      'style_slug' => '',
+      'style_slugs' => '',
       'script_slugs' => ''
      ), $atts));
     //
-    $style_slug = !empty($atts['style_slug']) ? $atts['style_slug'] : '';
+    $style_slugs = !empty($atts['style_slugs']) ? explode(',',$atts['style_slugs']) : [];
     $script_slugs = !empty($atts['script_slugs']) ? explode(',',$atts['script_slugs']) : [];
     //
     wp_dequeue_style($this->theme_handle);
@@ -82,9 +82,11 @@ class Parasol_Templater {
     );
     // main stylesheet is always enqueued -
     wp_enqueue_style('main');
-    // stylesheet arg option - no arg, no additional styles
-    if ( $style_slug && in_array($style_slug, $this->style_handles) ) {
-      wp_enqueue_style($style_slug);
+    // stylesheet args option -
+    foreach($style_slugs as $style_slug) {
+      if (in_array($style_slug, $this->style_handles) ) {
+        wp_enqueue_style($style_slug);
+      }
     }
     // reference docs are required -
     foreach (self::$record_handles as $record_handle) {

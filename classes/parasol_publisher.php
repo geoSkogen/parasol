@@ -92,10 +92,12 @@ class Parasol_Publisher {
     return $nested_post_data;
   }
 
-  protected function inject_shortcode_atts($tag_base, $style_slug, $script_slugs) {
+  protected function inject_shortcode_atts($tag_base, $style_slugs, $script_slugs) {
     // string
-    $result =
-      "[{$tag_base}_template style_slug='{$style_slug}' script_slugs='{$script_slugs}']";
+    $result = "[{$tag_base}_template ";
+    $result .= ($style_slugs) ?  "style_slug='{$style_slugs}' " : '';
+    $result .= ($script_slugs) ? "script_slugs='{$scirpt_slugs}' " : '';
+    $result .= ' ]';
       //
     return $result;
   }
