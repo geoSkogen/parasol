@@ -96,7 +96,7 @@ class Parasol_Publisher {
     // string
     $result = "[{$tag_base}_template ";
     $result .= ($style_slugs) ?  "style_slug='{$style_slugs}' " : '';
-    $result .= ($script_slugs) ? "script_slugs='{$scirpt_slugs}' " : '';
+    $result .= ($script_slugs) ? "script_slugs='{$script_slugs}' " : '';
     $result .= ' ]';
       //
     return $result;
