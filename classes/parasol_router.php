@@ -33,7 +33,10 @@ class Parasol_Router {
       case '/profile' :
         break;
       default :
-        $app_html = null;
+        if (!class_exists('Parasol_Home_Template')) {
+          include_once __DIR__ . '../../templates/parasol_default_template.php';
+        }
+        $app_html = new Parasol_Default_Template();
     }
 
     return $app_html->app_html();

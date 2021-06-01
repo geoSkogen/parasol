@@ -93,6 +93,14 @@ class Parasol_Admin {
       'parasol'     //section (parent settings-section uniqueID)
     );
     //
+    add_settings_field(
+      'publish', //id
+      'Parasol Publish Now?', //label
+      [$this,'parasol_publish_field'],    //call back function
+      'parasol',    // page slug
+      'parasol'     //section (parent settings-section uniqueID)
+    );
+    //
     add_settings_section(
       'parasol_suboptions',         //unique id
       'Parasol Suboptions Section',         //title
@@ -141,6 +149,8 @@ class Parasol_Admin {
   public function parasol_options_section() {
     //
     $this->collect_section_overhead('options','','main');
+    //error_log('settings overhead call');
+    //error_log(print_r($this->options,true));
     //
     ?>
     <div class="parasol-signal">
@@ -161,6 +171,43 @@ class Parasol_Admin {
     <label for="parasol_api_key">API Key:</label>
     <input type="text" id="api-key" class="parasol-admin"
      name="parasol[api_key]" <?php echo $att ."='". $val  ."'"?> />
+    <?php
+    //
+  }
+
+
+  public function parasol_publish_field() {
+    //
+    $val = (!empty($this->options['publish']) && $this->options['publish']) ?
+      $this->options['publish'] : '';
+
+    if ($val) {
+      //error_log('publish value is set');
+      if (!class_exists('Parasol_Publisher')) {
+        include_once 'parasol_publisher.php';
+      }
+      //
+      $publisher = new Parasol_Publisher('parasol');
+      //
+      if (!$publisher->error) {
+        //error_log('valid data for publication');
+        $publisher->publish('parasol','templates/template-full-width.php');
+
+        $opts = get_option('parasol');
+        $opts['publish'] = 0;
+        update_option('parasol',$opts);
+      }
+      //
+      if ($publisher->error) {
+        error_log(print_r($publisher->error,true));
+      }
+    }
+    //error_log('the latest options fetch--should include both api and publish props');
+    //error_log(print_r($this->options,true));
+    ?>
+    <label for="parasol_publish_checkbox">Publish Now?</label>
+    <input type="checkbox" id="publish" class="parasol-checkbox"
+      name="parasol[publish]" value="1" />
     <?php
     //
   }
