@@ -3,7 +3,7 @@
 class Parasol_Profile_Template {
 
   public function __construct() {
-    error_log('throw template');
+    error_log('profile template');
   }
 
   public function app_html() {

@@ -3,7 +3,7 @@
 class Parasol_Default_Template {
 
   public function __construct() {
-    error_log('throw template');
+    error_log('default template');
   }
 
   public function app_html() {

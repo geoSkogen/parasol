@@ -3,7 +3,7 @@
 class Parasol_Archives_Template {
 
   public function __construct() {
-    error_log('throw template');
+    error_log('archives template');
   }
 
   public function app_html() {

@@ -1,5 +1,5 @@
 book-of-changes,易經 I Ching &ndash; Book of Changes | Throw Hexagrams,throw,"touch_wheel,throw_control,archive_post_handler",
-build,易經 Build Hexagrams &ndash; I Ching &ndash; Book of Changes,"throw,build",build_control,book-of-changes
+build,易經 I Ching &ndash; Book of Changes | Build Hexagrams,"throw,build",build_control,book-of-changes
 trigrams,八卦 Trigrams &ndash; I Ching | 易經 &ndash; Book of Changes,"throw,trigrams",trigrams_control,book-of-changes
 hexagrams,易經 Hexagrams &ndash; I Ching &ndash; Book of Changes,"throw,hexagrams",hexagrams_control,book-of-changes
 ex-machina,Ex Machina &ndash; Ching &ndash; Book of Changes,ex_machina,,book-of-changes

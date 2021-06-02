@@ -25,13 +25,31 @@ class Parasol_Router {
         $app_html = new Parasol_Throw_Template();
         break;
 
-      case '/build' :
+      case '/build/' :
+
+        if (!class_exists('Parasol_Build_Template')) {
+          include_once $this->templates_path . 'parasol_build_template.php';
+        }
+        $app_html = new Parasol_Build_Template();
         break;
-      case '/hexagarams' :
+
+      case '/hexagrams/' :
+
+        if (!class_exists('Parasol_Hexagrams_Template')) {
+          include_once $this->templates_path . 'parasol_hexagrams_template.php';
+        }
+        $app_html = new Parasol_Hexagrams_Template();
         break;
-      case '/trigrams' :
+
+      case '/trigrams/' :
+
+        if (!class_exists('Parasol_Trigrams_Template')) {
+          include_once $this->templates_path . 'parasol_trigrams_template.php';
+        }
+        $app_html = new Parasol_Trigrams_Template();
         break;
-      case '/profile' :
+
+      case '/profile/' :
         break;
       default :
         if (!class_exists('Parasol_Default_Template')) {
