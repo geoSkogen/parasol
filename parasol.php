@@ -31,7 +31,7 @@ if (is_admin()) {
      include_once 'classes/parasol_router.php';
   }
 
-  $router = new Parasol_Router('book-of-changes','tao-75-red.png');
+  $router = new Parasol_Router('book-of-changes');
 
   $frontend = new Parasol_Templater(
     $router,
@@ -42,10 +42,11 @@ if (is_admin()) {
     // css docs to register
     ['main','throw','build','trigrams','hexagrams','profile','users','archive'],
     // active theme stylesheet handle - to dequeque as needed
+    'tao-75-red.png',
     'child-style'
   );
 
-  add_action( 'wp_head', [$router,'favicon_tag'], 2, null );
+  add_action( 'wp_head', [$frontend,'favicon_tag'], 2, null );
 
 
 }

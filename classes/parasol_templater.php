@@ -8,13 +8,14 @@ class Parasol_Templater {
   protected $router;
   protected $theme_handle;
 
-  public function __construct($router, $scripts_arr, $styles_arr, $theme_style_handle) {
+  public function __construct($router, $scripts_arr, $styles_arr, $favicon_filename, $theme_style_handle) {
     $this->script_handles = $scripts_arr;
     $this->style_handles = $styles_arr;
+    $this->favicon_filename = $favicon_filename;
     $this->router = $router;
     $this->theme_handle = $theme_style_handle;
     //
-    add_shortcode( 'parasol_template',
+    add_shortcode( $this->router->subdomain . '-template',
       [$this,'print_parasol_template']
     );
     //
@@ -58,6 +59,18 @@ class Parasol_Templater {
         null,
         true
       );
+    }
+  }
+
+  public static function favicon_tag() {
+    // void - echo
+    $uri_arr = explode('/',$_SERVER['REQUEST_URI']);
+    if (in_array($this->router->subdomain,$uri_arr)) {
+
+      $href = site_url() . '/wp-content/plugins/parasol/records/images/' . $this->favicon_filename;
+      $tag = "<link rel='icon' href='{$href}' type='image/x-icon' />";
+      error_log($href);
+      echo $tag;
     }
   }
 
