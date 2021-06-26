@@ -10,6 +10,13 @@ Text Domain:  parasol
 
 defined( 'ABSPATH' ) or die( 'We make the path by walking.' );
 
+
+if (!class_exists('BOC_Archive')) {
+    include_once 'classes/parasol_archive.php';
+  }
+
+  $archive = new BOC_Archive();
+
 if (is_admin()) {
 
   if ( !class_exists( 'Parasol_Admin' ) ) {
@@ -47,7 +54,6 @@ if (is_admin()) {
   );
 
   add_action( 'wp_head', [$frontend,'favicon_tag'], 2, null );
-
 
 }
 

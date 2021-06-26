@@ -48,8 +48,19 @@ class Parasol_Router {
         }
         $app_html = new Parasol_Trigrams_Template();
         break;
-
+      case '/ex-machina/' :
+        break;
+      case '/i-ching/' :
+        break;
       case '/profile/' :
+        break;
+      case '/profile/archives/' :
+        break;
+      case '/profile/contacts/' :
+        break;
+      case '/profile/creds/' :
+        break;
+      case '/profile/history/' :
         break;
       default :
         if (!class_exists('Parasol_Default_Template')) {
