@@ -146,8 +146,8 @@ class Parasol_Throw_Template {
 
     <!-- footer icons -->
   <div id="footer-wrap" class="flex-row flex-between">
-    <i id="hex-refresh" class="fas fa-retweet"></i>
-    <i id="hex-archive" class="far fa-folder"></i>
+    <i id="hex-refresh" class="fas fa-retweet" ></i>
+    <i id="hex-archive" class="far fa-folder" ></i>
   </div>
     <?php
 

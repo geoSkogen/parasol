@@ -7,6 +7,10 @@ body {
   margin: 0 0 0 0;
 }
 
+header {
+  display: none !important;
+}
+
 a:link,a:visited,a:active,a:hover {
   text-decoration: none;
   color: lightgrey;

@@ -33,6 +33,12 @@ class Parasol_Templater {
       );
     }
 
+    wp_register_style(
+      'font-awesome',
+      plugin_dir_url(__FILE__) . '../style/fontawesome/css/all.css'
+    );
+    wp_enqueue_style('font-awesome');
+
     //
     foreach ($this->script_handles as $script_handle) {
       wp_register_script(
@@ -43,6 +49,8 @@ class Parasol_Templater {
         null,
         true
       );
+
+
     }
     //
     self::add_records(self::$record_handles);
@@ -87,12 +95,6 @@ class Parasol_Templater {
     //
     wp_dequeue_style($this->theme_handle);
     wp_deregister_style($this->theme_handle);
-    wp_enqueue_style(
-      'font-awesome-5',
-      'https://use.fontawesome.com/releases/v5.3.0/css/all.css',
-      array(),
-      '5.3.0'
-    );
     // main stylesheet is always enqueued -
     wp_enqueue_style('main');
     // stylesheet args option -
