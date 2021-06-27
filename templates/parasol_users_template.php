@@ -11,7 +11,7 @@ class Parasol_Users_Template {
     error_log('this is app html!!!');
     ob_start();
     ?>
-    <h1>Users</h1>
+    
     <?php
 
     $html = ob_get_clean();

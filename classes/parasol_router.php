@@ -53,6 +53,10 @@ class Parasol_Router {
       case '/i-ching/' :
         break;
       case '/profile/' :
+        if (!class_exists('Parasol_Profile_Template')) {
+          include_once $this->templates_path . 'parasol_profile_template.php';
+        }
+        $app_html = new Parasol_Profile_Template();
         break;
       case '/profile/archives/' :
         break;
