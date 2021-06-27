@@ -8,6 +8,8 @@ class BOC_Archive {
 
       add_action( 'init', [$this,'register_custom_post_type'] );
     }
+
+    add_filter( 'rest_route_for_post', [$this,'plugin_rest_route_for_post'], 10, 2 );
   }
   // Create the custom post type for Reviews
   public static function define_custom_post_type(){
@@ -38,11 +40,21 @@ class BOC_Archive {
     register_post_type( 'boc-archive' , $args);
   }
 
+
   public function register_custom_post_type() {
 
     $this->define_custom_post_type();
 
     flush_rewrite_rules();
+  }
+
+
+  public function plugin_rest_route_for_post( $route, $post ) {
+    //
+    if ( $post->post_type === 'boc-archive' ) {
+        $route = '/wp/v2/boc-archive/' . $post->ID;
+    }
+    return $route;
   }
 
 }
