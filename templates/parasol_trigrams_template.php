@@ -1,6 +1,6 @@
 <?php
 
-class Parasol_Thrigrams_Template {
+class Parasol_Trigrams_Template {
 
   public function __construct() {
     error_log('trigrams template');

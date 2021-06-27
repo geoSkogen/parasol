@@ -41,23 +41,26 @@ class Parasol_Templater {
 
     //
     foreach ($this->script_handles as $script_handle) {
+
+      $deps = ($script_handle==='archive_post_handler') ? ['jquery'] : [];
+
       wp_register_script(
         $script_handle,
         plugin_dir_url(__FILE__) .
         '../lib/' . 'parasol_templater_' . $script_handle . '_script.js',
-        array(),
+        $deps,
         null,
         true
       );
-
-
     }
     //
     self::add_records(self::$record_handles);
     //
   }
 
+
   public static function add_records($script_handles) {
+
     foreach ($script_handles as $script_handle) {
       wp_register_script(
         $script_handle,
@@ -69,6 +72,7 @@ class Parasol_Templater {
       );
     }
   }
+
 
   public static function favicon_tag() {
     // void - echo
@@ -113,8 +117,17 @@ class Parasol_Templater {
     wp_enqueue_script('hex_control');
     // javascript doc args option -
     foreach($script_slugs as $script_slug) {
+      //
       if ( in_array($script_slug, $this->script_handles) ) {
+        //
         wp_enqueue_script($script_slug);
+        //
+        if ($script_slug==='archive_post_handler') {
+          $user = wp_get_current_user();
+          wp_localize_script( 'archive_post_handler', 'rest_api_collection',
+            [ 'nonce' => wp_create_nonce( 'wp_rest' ), 'user_id' => $user->ID ]
+          );
+        }
       }
     }
     // show the shortcode the path
