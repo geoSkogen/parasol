@@ -29,7 +29,7 @@ class Parasol_Admin {
   }
 
 
-  public static function add_assets() {
+  public function add_assets() {
     //
     foreach ($this->style_handles as $style_handle) {
       wp_register_style(

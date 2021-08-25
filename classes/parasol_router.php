@@ -37,7 +37,7 @@ class Parasol_Router {
 
   }
 
-  public static function favicon_tag() {
+  public function favicon_tag() {
     // void - echo
     $uri_arr = explode('/',$_SERVER['REQUEST_URI']);
     if (in_array($this->subdomain,$uri_arr)) {

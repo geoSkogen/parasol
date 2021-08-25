@@ -21,7 +21,7 @@ class Parasol_Templater {
   }
 
 
-  public static function add_assets() {
+  public function add_assets() {
     // void - register
     foreach ($this->style_handles as $style_handle) {
       wp_register_style(
@@ -46,7 +46,7 @@ class Parasol_Templater {
   }
 
 
-  public static function print_parasol_template($atts = []) {
+  public function print_parasol_template($atts = []) {
     // void - echo
     extract(shortcode_atts(array(
       'style_slugs' => '',
