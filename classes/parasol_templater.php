@@ -23,7 +23,7 @@ class Parasol_Templater {
   }
 
 
-  public static function add_assets() {
+  public function add_assets() {
     // void - register
     foreach ($this->style_handles as $style_handle) {
       wp_register_style(
@@ -42,7 +42,10 @@ class Parasol_Templater {
     //
     foreach ($this->script_handles as $script_handle) {
 
-      $deps = ($script_handle==='archive_post_handler') ? ['jquery'] : [];
+      $deps = (
+        $script_handle==='archive_post_handler' ||
+        $script_handle==='user_post_handler' ) ?
+          ['jquery'] : [];
 
       wp_register_script(
         $script_handle,
@@ -74,7 +77,7 @@ class Parasol_Templater {
   }
 
 
-  public static function favicon_tag() {
+  public function favicon_tag() {
     // void - echo
     $uri_arr = explode('/',$_SERVER['REQUEST_URI']);
     if (in_array($this->router->subdomain,$uri_arr)) {
@@ -87,7 +90,7 @@ class Parasol_Templater {
   }
 
 
-  public static function print_parasol_template($atts = []) {
+  public function print_parasol_template($atts = []) {
     // void - echo
     extract(shortcode_atts(array(
       'style_slugs' => '',
@@ -126,6 +129,13 @@ class Parasol_Templater {
           $user = wp_get_current_user();
           wp_localize_script( 'archive_post_handler', 'rest_api_collection',
             [ 'nonce' => wp_create_nonce( 'wp_rest' ), 'user_id' => $user->ID ]
+          );
+        }
+
+        if ($script_slug==='user_post_handler') {
+          //
+          wp_localize_script( 'user_post_handler', 'rest_api_collection',
+            [ 'nonce' => wp_create_nonce( 'wp_rest' ) ]
           );
         }
       }

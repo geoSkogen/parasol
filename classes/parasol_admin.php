@@ -29,7 +29,7 @@ class Parasol_Admin {
   }
 
 
-  public static function add_assets() {
+  public function add_assets() {
     //
     foreach ($this->style_handles as $style_handle) {
       wp_register_style(
@@ -185,7 +185,7 @@ class Parasol_Admin {
         include_once 'parasol_publisher.php';
       }
       //
-      $publisher = new Parasol_Publisher('parasol');
+      $publisher = new Parasol_Publisher('book-of-changes');
       //
       if (!$publisher->error) {
         //error_log('valid data for publication');

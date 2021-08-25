@@ -85,3 +85,7 @@ a.login-anchor {
  #no-form {
    display:none;
  }
+
+ #profile-header {
+   padding-top: 1.5em;
+ }

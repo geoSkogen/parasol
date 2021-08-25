@@ -45,7 +45,7 @@ if (is_admin()) {
     // javascript documents to register - enqueued as needed
     ['nav_modal','hex_control','touch_wheel','throw_control','build_control',
      'trigrams_control','hexagrams_control','profile_editor','messenger_control',
-     'archive_control','archive_filter','archive_post_handler'],
+     'archive_control','archive_filter','archive_post_handler','user_post_handler'],
     // css docs to register
     ['main','throw','build','trigrams','hexagrams','profile','users','archive'],
     // active theme stylesheet handle - to dequeque as needed
