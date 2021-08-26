@@ -24,6 +24,7 @@ if (is_admin()) {
   }
 
   $admin= new Parasol_Admin(
+    'book-of-changes',
     ['main'],
     ['main']
   );

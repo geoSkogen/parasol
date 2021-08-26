@@ -8,10 +8,11 @@ class Parasol_Admin {
   public $style_handles;
   public $script_handles;
 
-  public function __construct($script_handles,$style_handles) {
+  public function __construct($shortcode_handle,$script_handles,$style_handles) {
 
     $this->style_handles = $style_handles;
     $this->script_handles = $script_handles;
+	$this->shortcode_handle = $shortcode_handle;
 
     //
     add_action(
@@ -189,7 +190,7 @@ class Parasol_Admin {
       //
       if (!$publisher->error) {
         //error_log('valid data for publication');
-        $publisher->publish('parasol','templates/template-full-width.php');
+        $publisher->publish($this->shortcode_handle,'templates/template-full-width.php');
 
         $opts = get_option('parasol');
         $opts['publish'] = 0;
