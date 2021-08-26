@@ -95,7 +95,7 @@ class Parasol_Publisher {
   protected function inject_shortcode_atts($tag_base, $style_slugs, $script_slugs) {
     // string
     $result = "[{$tag_base}_template ";
-    $result .= ($style_slugs) ?  "style_slug='{$style_slugs}' " : '';
+    $result .= ($style_slugs) ?  "style_slugs='{$style_slugs}' " : '';
     $result .= ($script_slugs) ? "script_slugs='{$script_slugs}' " : '';
     $result .= ' ]';
       //
