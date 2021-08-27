@@ -51,13 +51,13 @@ class Parasol_Build_Template {
            <div id="subnav-modal">
              <ul id="profile-list" class="nav-sublist">
                <li class="nav-suboption">
-                 <a class="subnav-anchor profile" href="/book-of-changes/profile/archives/">archives</a>
+                 <a class="subnav-anchor profile" href="../profile/archives/">archives</a>
                </li>
                <li class="nav-suboption">
-                 <a class="subnav-anchor profile" href="/book-of-changes/profile/users/">message</a>
+                 <a class="subnav-anchor profile" href="../profile/users/">message</a>
                </li>
                <li class="nav-suboption">
-                 <a class="subnav-anchor profile" href="/book-of-changes/profile/">settings</a>
+                 <a class="subnav-anchor profile" href="../profile/">settings</a>
                </li>
                <li class="nav-suboption">
                  <a class="subnav-anchor profile" href="#">logout</a>

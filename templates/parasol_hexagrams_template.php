@@ -3,7 +3,7 @@
 class Parasol_Hexagrams_Template {
 
   public function __construct() {
-    error_log('throw template');
+    error_log('hexagrams template');
   }
 
   public function app_html() {
@@ -41,7 +41,7 @@ class Parasol_Hexagrams_Template {
                   <a class="subnav-anchor explore" href="../trigrams/">八卦<br/>trigrams</a>
                 </li>
                 <li class="nav-suboption">
-                  <a class="subnav-anchor explore" href="../hexagrams/">卦<br/>hexagrams</a>
+                  <a class="subnav-anchor explore" href="#">卦<br/>hexagrams</a>
                 </li>
                 <li class="nav-suboption">
                   <a class="subnav-anchor explore" href="../i-ching/">易經<br/>the book</a>
@@ -57,13 +57,13 @@ class Parasol_Hexagrams_Template {
             <div id="subnav-modal">
               <ul id="profile-list" class="nav-sublist">
                 <li class="nav-suboption">
-                  <a class="subnav-anchor profile" href="/book-of-changes/profile/archives/">archives</a>
+                  <a class="subnav-anchor profile" href="../profile/archives/">archives</a>
                 </li>
                 <li class="nav-suboption">
-                  <a class="subnav-anchor profile" href="/book-of-changes/profile/users/">message</a>
+                  <a class="subnav-anchor profile" href="../profile/users/">message</a>
                 </li>
                 <li class="nav-suboption">
-                  <a class="subnav-anchor profile" href="/book-of-changes/profile/">settings</a>
+                  <a class="subnav-anchor profile" href="../profile/">settings</a>
                 </li>
                 <li class="nav-suboption">
                   <a class="subnav-anchor profile" href="#">logout</a>

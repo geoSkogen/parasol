@@ -48,7 +48,7 @@ if (is_admin()) {
      'trigrams_control','hexagrams_control','profile_editor','messenger_control',
      'archive_control','archive_filter','archive_post_handler','user_post_handler'],
     // css docs to register
-    ['main','throw','build','trigrams','hexagrams','profile','users','archive'],
+    ['main','throw','build','trigrams','hexagrams','profile','users','archive','ex_machina'],
     // active theme stylesheet handle - to dequeque as needed
     'tao-75-red.png',
     'child-style'

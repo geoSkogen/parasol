@@ -48,24 +48,55 @@ class Parasol_Router {
         }
         $app_html = new Parasol_Trigrams_Template();
         break;
-      case '/ex-machina/' :
+     
+	 case '/ex-machina/' :
+	 
+	    if (!class_exists('Parasol_Ex_Machine_Template')) {
+          include_once $this->templates_path . 'parasol_ex_machina_template.php';
+        }
+        $app_html = new Parasol_Ex_Machina_Template();
         break;
+		
       case '/i-ching/' :
+	  
+	    if (!class_exists('Parasol_I_Ching_Template')) {
+          include_once $this->templates_path . 'parasol_i_ching_template.php';
+        }
+        $app_html = new Parasol_I_Ching_Template();
         break;
+		
       case '/profile/' :
+	  
         if (!class_exists('Parasol_Profile_Template')) {
           include_once $this->templates_path . 'parasol_profile_template.php';
         }
-        $app_html = new Parasol_Profile_Template();
+		$app_html = new Parasol_Profile_Template();
         break;
-      case '/profile/archives/' :
+		
+      case '/archives/' :
+		
+		 if (!class_exists('Parasol_Archives_Template')) {
+          include_once $this->templates_path . 'parasol_archives_template.php';
+        }
+		$app_html = new Parasol_Archives_Template();
         break;
-      case '/profile/contacts/' :
+	    
         break;
-      case '/profile/creds/' :
+		
+      case '/contacts/' :
+	  
+		 if (!class_exists('Parasol_Users_Template')) {
+          include_once $this->templates_path . 'parasol_users_template.php';
+        }
+		$app_html = new Parasol_Users_Template();
         break;
-      case '/profile/history/' :
-        break;
+  
+      case '/cred/' :
+	  
+        
+      case '/history/' :
+	  
+        
       default :
         if (!class_exists('Parasol_Default_Template')) {
           include_once $this->templates_path . 'parasol_default_template.php';
