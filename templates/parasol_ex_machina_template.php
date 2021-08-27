@@ -1,9 +1,12 @@
 <?php
 
 class Parasol_Ex_Machina_Template {
+	
+  protected $favicon_filename = 'tao-75-black-svg.png';
 
   public function __construct() {
     error_log('ex machina template');
+	$this->icon_path = site_url() . '/wp-content/plugins/parasol/records/images/' . $this->favicon_filename;
   }
 
   public function app_html() {
@@ -71,21 +74,27 @@ class Parasol_Ex_Machina_Template {
       </div><!-- nav modal-->
     </div><!-- nav modal shell -->
 	
-	<div id="ex-machina-header">
-	  <h1 class="page-title">Deus Ex Machina | Machina Ex Nihilo</h1>
-	  <h2 class="page-sub-title">The Legacy of <i>I Ching</i> in Digital Computing</h2>
+	</div>  <!-- relshell -->
+	
+	<div id="header-wrapper" class="flex-row flex-center">
+	  <div id='badge-frame'>
+          <img src="<?php echo $this->icon_path;?>" />
+      </div>
+	  <div id="ex-machina-header">
+	    <h1 class="page-title">Deus Ex Machina | Machina Ex Nihilo</h1>
+	    <h2 class="page-sub-title">The Legacy of <i>I Ching</i> in Digital Computing</h2>
+	  </div>	
 	</div>
 		
-    <div id="the-content-wrapper" class="flex-row flex-center">
-	  <article id="the-graphics">
+    <div id="app" class="flex-row flex-around">
+	 
+	 <article id="the-graphics">
 	    <div id="graphic-shell">
 		  <img id="ex-machina-graphic" src="#" />
 		</div>
 	  </article>
-      <article id="the-content" class="">
-		
-      <!-- -->
-
+      
+	  <article id="the-content" class="">
         <h3 class="tab-header">Gottfried Liebniz</h3>
         <section class="inform flex-row flex-center">
 		  <p class="snippet">
@@ -140,6 +149,13 @@ class Parasol_Ex_Machina_Template {
             implication, exclusivity, and equivalence.
           </p>
 		</section>
+		
+		<h3 class="tab-header">Alan Turing</h3>
+        <section class="inform flex-row flex-center">
+		  <p class="snippet">
+		  In a 1936 paper Turing proposed the 'universal computing machine' concept&mdash;
+		  now known as the 'Turing Machine'&mdash;</p>
+		</section>
 
         <h3 class="tab-header">Claude E. Shannon</h3>
 		
@@ -158,7 +174,7 @@ class Parasol_Ex_Machina_Template {
 		  <p class="snippet">Following his invention of the 'Model K'&mdash;
 		    an electro-mechanical binary-based adding machine&mdash; 
 		    he lead the 1938 Bell Labs research project resulting in the
-			Complex Number Computer. 
+			Complex Number Computer.  
 		  </p>
 		 </section>
 
@@ -187,46 +203,36 @@ class Parasol_Ex_Machina_Template {
           </p>
 		</section>
 
-        <h3 class="tab-header">John VonNeuman</h3>
-        <section class="inform flex-row flex-center">
-		  <p class="snippet">&Omega;</p>
-		</section>
-
-        <h3 class="tab-header">Alan Turing</h3>
-        <section class="inform flex-row flex-center">
-		  <p class="snippet">&Omega;</p>
-		</section>
-
       </article> <!-- end content -->
+	  
 	  <article id="the-sidebar-nav">
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">Liebniz</h3>
-		</a>
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">Boole</h3>
-		</a>
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">Shannon</h3>
-		</a>
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">Stibitz</h3>
-		</a>
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">Atanasoff</h3>
-		</a>
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">Hopper</h3>
-		</a>
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">VonNeuman</h3>
-		</a>
-		<a class="sidebar-nav-anchor">
-		  <h3 class="sidebar-nav-anchor-text">Turing</h3>
-		</a>
-	  </article>
-    </div><!-- end wrapper -->
+	    <div id="sidebar-nav-shell">
+		  <a class="sidebar-nav-anchor">
+		    <h3 class="sidebar-nav-anchor-text">Liebniz</h3>
+		  </a>
+		  <a class="sidebar-nav-anchor">
+		    <h3 class="sidebar-nav-anchor-text">Boole</h3>
+		  </a>
+		  <a class="sidebar-nav-anchor">
+		    <h3 class="sidebar-nav-anchor-text">Turing</h3>
+		  </a>
+		  <a class="sidebar-nav-anchor">
+		    <h3 class="sidebar-nav-anchor-text">Shannon</h3>
+		  </a>
+		  <a class="sidebar-nav-anchor">
+		    <h3 class="sidebar-nav-anchor-text">Stibitz</h3>
+		  </a>
+		  <a class="sidebar-nav-anchor">
+		    <h3 class="sidebar-nav-anchor-text">Atanasoff</h3>
+		  </a>
+		  <a class="sidebar-nav-anchor">
+		    <h3 class="sidebar-nav-anchor-text">Hopper</h3>
+		  </a>
+		</div>
+	  </article>  <!-- end sidebar -->
+    
+	</div><!-- end wrapper -->
 
-  </div>
   
     <?php
 

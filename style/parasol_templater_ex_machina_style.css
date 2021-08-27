@@ -3,6 +3,24 @@ div#ex-machina-header {
   padding: 0.5em;
 }	
 
+div#ex-machina-header > h1,  div#ex-machina-header > h2  { 
+  color: white;
+  opacity: 0.66;
+}
+
+#badge-frame {
+  padding: 0.2em;
+  margin: 0.2em;
+  margin-top: 6em;
+  background-color: white;
+  max-width: 75px;
+  min-width: 75px;
+  max-height: 75px;
+  min-height: 75px;
+  text-align: center;
+  border-radius: 100%;
+}
+
 
 section.inform {
 	
@@ -11,11 +29,14 @@ section.inform {
 p.snippet {
   max-width: 360px;
   min-width: 360px;	
+  font-size: 20px;
 }
 
 p.blockquote {
   max-width: 300px;
   min-width: 300px;
+  font-size: 20px;
+  font-style: italic;
 }
 
 p.blockquote {	
@@ -34,6 +55,11 @@ img#ex-machina-graphic {
   left: 25px;
 }	
 
+div#sidebar-nav-shell {
+  position: fixed;
+  right: 16em;
+}
+	
 article#the-sidebar-nav {
   display: none;
 }
@@ -59,8 +85,8 @@ a.sidebar-nav-anchor {
 	}
 	
 	div#graphic-shell {
-      max-width:300px;
-	  min-width: 300px;
+      max-width:125px;
+	  min-width: 125px;
       padding-top: 6em;
 	  display: block;
     }
@@ -72,22 +98,28 @@ a.sidebar-nav-anchor {
 
 @media only screen and (min-width: 1400px) {
   
-  article#the-sidebar-nav {
+    article#the-sidebar-nav {
       padding-left: 6em;
 	  display: block;
-  }
+    }
   
-  img#ex-machina-graphic {
-    left: 125px;
-  }	
+    img#ex-machina-graphic {
+      left: 125px;
+    }	
   
-  div#ex-machina-header > h1 {
-    padding-left: 150px;
-  }
+    div#ex-machina-header > h1 {
+      padding-left: 25px;
+	  color: white;
+    }
   
-  div#ex-machina-header > h2{
-    padding-left: 300px;
-  }
+    div#ex-machina-header > h2{
+      padding-left: 300px;
+    }
+	
+	p.snippet {
+	  max-width: 800px;
+	  min-width: 800px;
+    }
 }
 
 
