@@ -31,14 +31,15 @@ if (is_admin()) {
      include_once 'classes/parasol_router.php';
   }
   // inject the subdomain of your app here:
-  $router = new Parasol_Router('parasol','parasol-icon');
+  $router = new Parasol_Router('parasol');
 
   // add names of main css and js files
   $frontend = new Parasol_Templater(
     $router,
     ['main'],
     ['main'],
-    'child-styles'
+    'parasol.png',
+    'child-style'
   );
 
   add_action( 'wp_head', [$router,'favicon_tag'], 2, null );
