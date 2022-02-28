@@ -42,7 +42,7 @@ if (is_admin()) {
     'child-style'
   );
 
-  add_action( 'wp_head', [$router,'favicon_tag'], 2, null );
+  add_action( 'wp_head', [$fontend,'favicon_tag'], 2, null );
 
 }
 
